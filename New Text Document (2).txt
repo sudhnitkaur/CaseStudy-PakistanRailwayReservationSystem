@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Damro Furniture</title> 
+  <style>
+  input[type="text"], input[type="date"], select {
+  width:98%;
+  }
+  body{
+        background-color: #ccff99;
+    font-weight: bold; 
+  }
+  div{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 20px; 
+  }
+
+   h3{
+    /* Fill  the attributes and values */
+    color: #FFFFFF;
+    background-color: #6666FF;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: Verdana;
+    padding: 5px;
+    border-radius: 6px;
+    width: 50%;
+   }
+  
+  table, td, tr{
+    border: solid 2px black;
+    /* Fill  the attributes and values */
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    border-spacing: 1px;
+    border-radius: 6px;
+    color: #000000;
+    background-color: transparent;
+    padding: 1px;
+  }
+
+  ::-webkit-input-placeholder { 
+    color: #696969;
+    font-weight: bold;
+  }
+  
+  #submit{
+    /* Fill  the attributes and values */
+    color: #FFFFFF;
+    background-color: #6666FF;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 5px;
+    font-weight: bold;
+    font-family: Verdana;
+    border-radius: 6px;
+    
+  }
+  #result{
+    /* Fill  the attributes and values */
+    color: #000000;
+    font-size: 20px;
+  }
+
+  </style>
+</head>
+<body>
+<div>
+    
+    <h3>Damro Furniture</h3>
+    
+<form onsubmit="return display()" >
+<table>
+  <tr>
+        <td>Customer Name</td>
+        <td><input type="text" placeholder="Enter the customer name" id="cname" required></td>
+    </tr>
+  <tr>
+       <td>Phone Number</td>
+     <td><input type="text" id="phno" placeholder="Enter the phone number" required></td>
+    </tr>
+  <tr>
+        <td>Order Id</td>
+        <td><input type="text" id="oid" placeholder="Enter the order id" pattern="DAM[0-9]{3}"></td>
+    </tr>
+  <tr>
+        <td>Date of Order</td>
+        <td><input type="date" id="orderdate"></td>
+    </tr>
+  <tr>
+    <td>Sofa Model</td>
+    <td>
+        <select id="model">
+            <option value="Select Sofa Model..">Select Sofa Model..</option>
+            <option value="SectionalSofa">SectionalSofa</option>
+            <option value="LawsonStyleSofa">LawsonStyleSofa</option>
+            <option value="ContemporarySofa">ContemporarySofa</option>
+        </select>
+    </td>
+  </tr>
+  <tr>
+        <td>Quantity</td>
+        <td><input type="text" placeholder="Enter the quantity" id="quantity" required></td>
+    </tr>
+  <tr>
+    <td>Distance in KMS</td>
+    <td>
+        <select id="distance">
+            <option value="Select Distance..">Select Distance..</option>
+            <option value="10-19">10-19</option>
+            <option value="20-29">20-29</option>
+            <option value="30 above">30 above</option>
+        </select>
+    </td>
+  </tr>
+</table>
+
+<!-- Fill the submit component value attribute  -->
+<p><input type="submit" id="submit" name="submit" value="CONFIRM ORDER"/></p>
+
+<!-- Fill the div id  -->
+<div id="result"> </div>
+
+</form>
+</div>
+<!--Write necessary code wherever needed to complete this code challenge  -->
+<script>
+function display(){  
+    var gst;
+    var sofaCost;
+    var totalSofaCost;
+    var dc;
+    var sofaModel=document.getElementById("model").value;
+    var dis= document.getElementById("distance").value;
+    var quant=document.getElementById("quantity").value;
+    
+    if(sofaModel=="SectionalSofa"){
+        sofaCost=quant*4999;
+        gst=(sofaCost*7/100);
+    }else if(sofaModel=="LawsonStyleSofa"){
+        sofaCost=quant*5499;
+        gst=(sofaCost*7/100);
+    }else if(sofaModel=="ContemporarySofa"){
+        sofaCost=quant*3699;
+        gst=(sofaCost*7/100);
+    }
+    
+    if(dis=="10-19"){
+        dc=100;
+    }else if(dis=="20-29"){
+        dc=200;
+    }else if(dis=="30 above"){
+        dc=350;
+    }
+    totalSofaCost=Math.round(sofaCost+gst+dc);
+    document.getElementById("result").innerHTML="Your order has been successfully placed and you need to pay Rs."+totalSofaCost;
+  return false;
+}
+</script>
+</body>
+</html>
+
+=================================================
+=================================================
+
+
+Railway reservation service
+
+User is directed to login interface where @RequestMapping authenticates the information otherwise throws exception
+
+once logged in User can check the functinality of ticket reservation by using @GetMapping path 
+interface then shows reserved ticekts, available tickets, PNR number, cancelSeat, cancel ticket, Total Fare, confirmation, 
+then User is redirected to Time table of trains available for running -
+-where User enters orgin and destination and Train location Functionality
+
+User can access a Basic Data Display where all of the train information is dispalyed by @putMapping @getMapping and @postMapping
+User can perform  gettrainByTainNo, addtrain, search with train_no, delete train, displaytrain/trainNo
+
+
+
+Railway application system
+
+Application system focuses on use of @RestController @RequestMapping provides with UserDetailService and credentialsrepository and the
+use of RabbitMQ
+
+User is directed to login interface where @RequestMapping authenticates the information otherwise throws exception
+this is followed by validation of UserID with username
+User can access createUserAccount, getProfile, GetUserCreddentails functionality using @GetMapping and @PostMapping followed by Validation 
+of LoggedinUSER
+
+User gets to createBankAccount and addMoneyToBankAccount in the banking part 
+train functionalities such as getTrainDetail, trainTimeTable, trainBetweenStation, trainFares, trainLocation, getTrainByTrainNo
+ is accesed by User here using @GetMapping
+
+User can also check Available Accomodation using @PostMapping, get Reserved Ticekt by PNR no check available seats using @GetMapping
+ and cancel Tickets by PNR No using @GetMapping.
+
+=================================================
+
+=================================================
+
+api path 
+
+Railway application system api path
+/public/userWelcome - welcomes user
+/public/createUserAccount-- User can Create User Account
+/public/getProfile-- User can get There Profile
+/public/GetUserCredentials -- User can get Credentials Details
+/public/createBankAccount --  User can bank Account
+/public/addMoneyToBankAccount -- User add money bank Account
+/public/trainDetail/{train_no} -- Display details of trains
+/public/trainTimeTable/{station} -- "Display Time Table of Trains
+/public/trainsBetweenStation/{origin}:{destination} -- Display trains between stations
+/public/trainFare/{origin}:{destination} -- Display trains and fare between stations
+/public/trainLocation -- Display train location to your Train
+/public/getTrainByTrainNo/{train_no} - Display train Detail to your Train no
+/public/checkPNR/{pnr} - get Train Ticket by your PNR no 
+/nonPublic/cancelTicket/{pnr} -- CancelTrain Ticket by your PNR no
+/nonPublic/reserveTicket - "reserve Train Ticket by your Reservation Form 
+/public/availableSeats - get Available Seat by your PNR no
+
+Railway reservation service
+/authenticate - authentication
+/nonPublic/addData - Added Data is Accessed
+/public/welcome - Welcome to Pakistan Railway Reservation portal
+/public/reserveTicket - 
+/public/getTicket/{pnr} -
+/public/cancelTicket/{pnr} -
+/public/cancelSeat
+/public/availableSeats
+/public/availableAccommodation
+/public/timeTable/{city} - get Time Table of Trains
+/public/trainsLocations-  Display train location to your Train
+/public/trainFares/{origin}:{destination} - get trains and fare between stations
+/nonPublic/updateAllTrains 
+/public/displayAllTrain
+/nonPublic/deleteAllTrains/{confirmation - Delete All Train Data from Database
+
+classes/function
+
+
+Railway application system
+
+configuration 
+1) Authentiaction Resposne
+2)RabbitMQ Configuration - all beans required for rabbit mq string name, queue, binding, message convertor
+3)SecurityConfiguration - all of the security related configuration and antmatchers
+4)swagger configuration - this the s
+
+controller
+application controller
+
+models
+forms 
+payment
+crendentials
+passenger
+ticket
+response
+
+repository
+credentialrepository
+
+service
+application service
+email service
+userDetail service
+main java
+======================================================
+
+Railway reservation service
+
+security
+3)SecurityConfiguration - all of the security related configuration and antmatchers
+4)swagger configuration - this the s
+
+controller
+train controller
+
+model
+ticket
+train
+timetable
+trainlocation
+trainbetweensatation
+
+repo
+accomodationrepo
+credentialrepo
+reservedseatsrepo
+reservedTicketRepo
+seatRep
+trainrep
+
+service
+reservationservice
+sequenceGenerator
+emailservice
+trainservice
+userDetail
+
+main
+
+
+datamodel
+ private UserForm userForm;
+    private long pnr;
+    private String room_type;
+
+  private String AccountHolder;
+    private Long user_id;
+    private String contact_no;
+    private String bank_name;
+    private String account_type;
+
+ private UserForm userForm;
+    private TicketForm ticketForm;
+
+  private String full_name;
+    private int age;
+    private String contact_no;
+    private String email_address;
+
+
+ private Long user_id;
+    private String AccountHolder;
+    private String bank_name;
+    private Long account_no;
+    private String credit_card_no;
+    private String cvv;
+
+  private Long pnr;
+    private Ticket ticket;
+    private Long transactional_id;
+    private Long account_no;
+    private String email_address;
+    private String status;
+    private LocalDateTime booking_time;
+    private double amount;
+
+ private String train_no;
+    private String start;
+    private String destination;
+    private Date reservation_date;
+    private List<Passenger> passengers;
+
+  private String train_no;
+    private LocalDate date;
+
+ private String start;
+    private String destination;
+    private LocalDate localDate;
+
+  private Integer price;
+    private LocalTime arrival_time;
+    private LocalTime departure_time;
+
+
+  private String train_no;
+    private LocalDate date;
+    private String your_location;
+
+ private String train_no;
+    private LocalDate reservation_date;
+
+  private Long id;
+    private String  train_name;
+    private String train_no;
+    private String start_from;
+    private LocalTime departure_time;
+    private String to_destination;
+    private LocalTime arrival_time;
+    private String train_type;
+    private List<String> run_days;
+    private Map<String,Double> coaches_fair = new LinkedHashMap<>();
+    private int train_length;
+    private boolean active;
+    private Map<String,Detail> route;
+
+   @Id
+    @Field(name = "user_id")
+    private Long user_id;
+    @Field(name = "full_name")
+    private String full_name;
+    @Field(name = "age")
+    private int age;
+    @Field(name = "contact_no")
+    private String contact_no;
+    @Field(name = "email_address")
+    private String email_address;
+    @Field(name = "bank_name")
+    private String bank_name;
+    @Field(name = "account_no")
+    private Long account_no;
+    @Field(name = "credit_card_no")
+    private String credit_card_no;
+    @Field(name = "cvv")
+    private String cvv;
+    @Field(name = "expiry_date")
+    private Date expiry_date;
+    @Field(name = "username")
+    private String username;
+    @Field(name = "password")
+    private String password;
+    @Field(name = "roles")
+    private String roles;
+    @Field(name = "failed_attempts")
+    private int failed_attempts;
+    @Field(name = "account_non_locked")
+    private boolean account_non_locked;
+    @Field(name = "lock_time")
+    private LocalTime lock_time;
+    @Field(name = "tickets")
+    private Map<Long, Ticket> tickets;
+
+  private String start;
+    private String destination;
+    private LocalDate localDate
+
+  private String username;
+    private String password;
+    private Long user_id;
+    private String roles;
+
+  private String train_no;
+    private LocalDate date;
+    private String your_location;
+
+  private Long transactional_id;
+    private Double amountDebited;
+    private Long AccountNo;
+    private LocalDateTime transaction_time;
+
+   private String train_no;
+    private String train_name;
+    private String start_from;
+    private LocalTime departure_time;
+    private String to_destination;
+    private LocalTime arrival_time;
+    private String train_type;
+    private List<String> run_days;
+    private Map<String, Double> coaches_fair = new LinkedHashMap<>();
+    private int train_length;
+    private boolean active;
+    private Map<String, Detail> route;
+
+    public Train(String s) {
+        train_name = s;
+
+  private int id;
+    private String train_name;
+    private String train_no;
+    private String start_from;
+    private String to_destination;
+    private LocalTime time_arrival;
+    private LocalTime time_departure;
+
+  private String current_station;
+    private LocalDateTime arrival_time;
+    private LocalDateTime departure_time;
+    private String train_status;
+    private int platform;
+
+ private String train_no;
+    private String train_name;
+    private String origin;
+    private LocalTime departure_time;
+    private String destination;
+    private LocalTime arrival_time;
+    private String travel_time;
+    private List<String> run_days;
+    private Map<String, Double> classes = new LinkedHashMap<>()
+
+
+unit testing 
+BANK MANAGMENT SERVICE
+
+Test CASE ID || TEST CASE SCENARIO || TEST CASE PRE CONDITION                    || TEST STEPS                 || TEST DATA    || EXPECTED RESULT    || Actual Result
+
+1                create_TestCase     User needs to enter a invalid detail     Enter details in BankForm           Invalid         Bank not Registered   Bank not Registered
+
+                                                                                    setBank_name("JOHn");
+                                        
+                                                                                    setBank_name("SBI");
+
+                                                                                    setAccount_type("Local");
+                                            
+
+2                addBalance_TestCase  User needs to enter a invalid detail      Enter details                   Invalid              ID not Registered  
+                                                                                    ID = 09887
+                                                                                    
+ saveTransaction_TestCase
+setAccountNo(123123L)
+setAmount(10000D)
+ balanceDebited_TestCase
+SaveTransaction_TestCase
+trainTimeTable_TestCase- "There is no Station Exist on the Route Pakistan Rail Network
+checkPNR_TestCase - Invalid PNR , Please write Information correctlyInvalid PNR 
+ticketCancellation_TestCase - Invalid PNR , Please write Information correctly
+trainBetweenStation_TestCase - Invalid PNR , Please write Information correctly
+availableSeats_TestCase - Invalid PNR , Please write Information correctly
+    
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: railway.reservation.service@gmail.com
+    password: rvmbsocvdjcfbxpx
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          port: 25
+          auth: true
+          starttls:
+            enable: true
+            required: true
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    hostname: localhost
+    ip-address: 
